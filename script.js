@@ -62,14 +62,12 @@ function stopClock() {
   clearInterval(i);
 }
 
-startButton.addEventListener("click", () => {
-  startClock();
-});
-
-resetButton.addEventListener("click", () => {
-  clearDisplay();
-});
-
-stopButton.addEventListener("click", () => {
-  stopClock();
+document.addEventListener("click", (e) => {
+  if (e.target.classList.contains("stopwatch__start")) {
+    startClock();
+  } else if (e.target.classList.contains("stopwatch__reset")) {
+    clearDisplay();
+  } else if (e.target.classList.contains("stopwatch__stop")) {
+    stopClock();
+  }
 });

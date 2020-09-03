@@ -1,6 +1,7 @@
 const display = document.querySelector(".display");
 const startButton = document.querySelector(".stopwatch__start");
 const resetButton = document.querySelector(".stopwatch__reset");
+const stopButton = document.querySelector(".stopwatch__stop");
 let secondCounter = 0;
 let minuteCounter = 0;
 let hourCounter = 0;
@@ -8,6 +9,9 @@ let hourCounter = 0;
 // function to stop stop watch and clear counter
 function clearDisplay() {
   display.innerHTML = "00:00:00";
+  secondCounter = 0;
+  minuteCounter = 0;
+  hourCounter = 0;
 }
 
 // function that sets timeout and calls add function (keeps track out the counter variables and updates the display)
@@ -47,10 +51,15 @@ function add() {
 }
 
 function startClock() {
-  setInterval(() => {
+  i = setInterval(() => {
     add();
     // startClock();
   }, 1000);
+}
+
+function stopClock() {
+  clearTimeout(t);
+  clearInterval(i);
 }
 
 startButton.addEventListener("click", () => {
@@ -59,4 +68,8 @@ startButton.addEventListener("click", () => {
 
 resetButton.addEventListener("click", () => {
   clearDisplay();
+});
+
+stopButton.addEventListener("click", () => {
+  stopClock();
 });

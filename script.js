@@ -1,55 +1,62 @@
-const seconds = document.querySelector(".stopwatch__display-second");
-const minutes = document.querySelector(".stopwatch__display-minute");
-const hours = document.querySelector(".stopwatch__display-hour");
+const display = document.querySelector(".display");
+const startButton = document.querySelector(".stopwatch__start");
+const resetButton = document.querySelector(".stopwatch__reset");
 let secondCounter = 0;
 let minuteCounter = 0;
 let hourCounter = 0;
 
-function clearClock() {
-  // document.querySelector(".stopwatch__display-second").innerHTML = "00";
-  seconds.innerHTML = "00";
-  minutes.innerHTML = "00";
-  hours.innerHTML = "00";
+// function to stop stop watch and clear counter
+function clearDisplay() {
+  display.innerHTML = "00:00:00";
 }
 
-function startTimer() {
-  setInterval(() => {
-    if (secondCounter < 60) {
-      if (secondCounter < 10) {
-        seconds.innerHTML = "0" + secondCounter;
-        secondCounter++;
-      } else if (secondCounter < 60) {
-        seconds.innerHTML = secondCounter;
-        secondCounter++;
-      }
+// function that sets timeout and calls add function (keeps track out the counter variables and updates the display)
+function timer() {
+  t = setTimeout((add) => {}, 1000);
+}
+
+// function that updates the counter variables and updates display. Calls the timer function that waits a second and calls this one again
+function add() {
+  if (secondCounter < 60) {
+    secondCounter++;
+  } else {
+    secondCounter = 0;
+    if (minuteCounter < 59) {
+      minuteCounter++;
     } else {
-      secondCounter = 0;
+      minuteCounter = 0;
+      hourCounter++;
     }
+  }
+  display.textContent =
+    (hourCounter ? (hourCounter > 9 ? hourCounter : "0" + hourCounter) : "00") +
+    ":" +
+    (minuteCounter
+      ? minuteCounter > 9
+        ? minuteCounter
+        : "0" + minuteCounter
+      : "00") +
+    ":" +
+    (secondCounter
+      ? secondCounter > 9
+        ? secondCounter
+        : "0" + secondCounter
+      : "00");
+
+  timer();
+}
+
+function startClock() {
+  setInterval(() => {
+    add();
+    // startClock();
   }, 1000);
 }
 
-// const startTimer = setInterval(() => {
-// secondCounter++;
-// if (secondCounter < 60) {
-//   if (secondCounter < 10) {
-//     seconds.innerHTML = "0" + secondCounter;
-//   } else if (secondCounter < 60) {
-//     seconds.innerHTML = secondCounter;
-//   }
-// } else {
-//   secondCounter = 0;
-// }
-// }, 1000);
+startButton.addEventListener("click", () => {
+  startClock();
+});
 
-window.addEventListener("click", (e) => {
-  if (e.target.classList.contains("stopwatch__start")) {
-    /// start button code
-    startTimer();
-  } else if (e.target.classList.contains("stopwatch__stop")) {
-    // stop cutton code
-    // stopClock();
-  } else if (e.target.classList.contains("stopwatch__reset")) {
-    //reset button code
-    clearClock();
-  }
+resetButton.addEventListener("click", () => {
+  clearDisplay();
 });

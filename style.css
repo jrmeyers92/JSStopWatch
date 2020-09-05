@@ -32,3 +32,17 @@ body {
   width: 10rem;
   background-color: #f74a1a;
 }
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 80%;
+  max-height: 250px;
+}
+
+.circle {
+  fill: none;
+  stroke: black;
+  stroke-width: 0.2rem;
+  stroke-dasharray: 0 188.49;
+}

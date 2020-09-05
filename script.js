@@ -5,6 +5,21 @@ const stopButton = document.querySelector(".stopwatch__stop");
 let secondCounter = 0;
 let minuteCounter = 0;
 let hourCounter = 0;
+let circle = document.querySelector(".circle");
+let strokeArray1 = 0;
+let strokeArray2 = 188.49;
+
+function secondsCircle() {
+  j = setTimeout(() => {
+    circle.style.strokeDasharray = strokeArray1 + " " + strokeArray2;
+    if (strokeArray1 < 188.49) {
+      strokeArray1 += 3.1415;
+      circle.style.strokeDasharray = strokeArray1 + " " + strokeArray2;
+    } else {
+      strokeArray1 = 0;
+    }
+  }, 0);
+}
 
 // function to stop stop watch and clear counter
 function clearDisplay() {
@@ -53,7 +68,7 @@ function add() {
 function startClock() {
   i = setInterval(() => {
     add();
-    // startClock();
+    secondsCircle();
   }, 1000);
 }
 

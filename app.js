@@ -24,7 +24,7 @@ const module = (function () {
     // funtion to clear interval 
     function clearClockInterval(){
         clearInterval(t);
-        clearInterval(j)
+        clearInterval(j);
     }
 
     // function to manaage counter variables

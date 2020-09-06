@@ -43,6 +43,6 @@ body {
 .circle {
   fill: none;
   stroke: black;
-  stroke-width: 0.2rem;
+  stroke-width: 0.5rem;
   stroke-dasharray: 0 188.49;
 }

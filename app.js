@@ -92,7 +92,7 @@ const module = (function () {
       j = setInterval(() => {
           increaseStrokCounters();
           updateSVGPercentage(circle);
-      }, 1000);
+      }, 10);
   }
 
   // function to erease SVG
